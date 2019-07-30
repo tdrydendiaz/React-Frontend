@@ -9,6 +9,7 @@ import { faJava } from "@fortawesome/free-brands-svg-icons";
 
 
 import PostThread from './Components/PostThread.js';
+import NaviBar from './Components/NavBar.js';
 
 
 library.add(faStroopwafel);
@@ -19,7 +20,8 @@ library.add(faMugHot, faJava);
 class App extends Component {
   render() {
     return (
-      <div>
+      <div>  
+          <NaviBar />
         <Button
           onClick={this.handleClick}
           color="success" outline={true} disabled={false}>Success</Button>
@@ -27,6 +29,7 @@ class App extends Component {
         <p>Favorite Drink: <FontAwesomeIcon icon="mug-hot" /></p>
         <p> Also Coffee : <FontAwesomeIcon icon={["fab", "java"]} /></p>
         <PostThread onRender={() => this.whenPostThreadRender()}/>
+      
 
 
       </div>

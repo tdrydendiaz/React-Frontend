@@ -6,18 +6,14 @@ import './App.css';
 import { Button } from "reactstrap";
 import { faMugHot } from "@fortawesome/free-solid-svg-icons";
 import { faJava } from "@fortawesome/free-brands-svg-icons";
-import axios from "axios";
+
+
+import PostThread from './Components/PostThread.js';
+
 
 library.add(faStroopwafel);
 library.add(faMugHot, faJava);
 
-
-
-
-
-
-
-// import logo from './logo.svg';
 
 
 class App extends Component {
@@ -30,11 +26,17 @@ class App extends Component {
         <p>Favorite Food: <FontAwesomeIcon icon="stroopwafel" /></p>
         <p>Favorite Drink: <FontAwesomeIcon icon="mug-hot" /></p>
         <p> Also Coffee : <FontAwesomeIcon icon={["fab", "java"]} /></p>
+        <PostThread onRender={() => this.whenPostThreadRender()}/>
 
 
       </div>
     );
   }
+
+   whenPostThreadRender() {
+    console.log('PostTread rendered');
+
+}
 }
 
 export default App;

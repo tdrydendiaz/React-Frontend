@@ -10,6 +10,7 @@ import { faJava } from "@fortawesome/free-brands-svg-icons";
 
 import PostThread from './Components/PostThread.js';
 import NaviBar from './Components/NavBar.js';
+import InputForm from './Components/InputForm.js';
 
 
 library.add(faStroopwafel);
@@ -20,26 +21,27 @@ library.add(faMugHot, faJava);
 class App extends Component {
   render() {
     return (
-      <div>  
-          <NaviBar />
+      <div>
+        <NaviBar />
         <Button
           onClick={this.handleClick}
           color="success" outline={true} disabled={false}>Success</Button>
         <p>Favorite Food: <FontAwesomeIcon icon="stroopwafel" /></p>
         <p>Favorite Drink: <FontAwesomeIcon icon="mug-hot" /></p>
         <p> Also Coffee : <FontAwesomeIcon icon={["fab", "java"]} /></p>
-        <PostThread onRender={() => this.whenPostThreadRender()}/>
-      
+        <PostThread onRender={() => this.whenPostThreadRender()} />
+        <InputForm />
+
 
 
       </div>
     );
   }
 
-   whenPostThreadRender() {
+  whenPostThreadRender() {
     console.log('PostTread rendered');
 
-}
+  }
 }
 
 export default App;

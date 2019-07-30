@@ -5,7 +5,7 @@ import axios from "axios";
 class PostThread extends Component {
     makeRequest = () => {
         axios
-            .get("http://www.omdbapi.com/?apikey=cf6d6c63&t=hop")
+            .get("http://localhost:5000/item/all")
             .then(response => {
                 this.setState({
                     data: response.data

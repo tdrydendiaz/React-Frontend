@@ -1,83 +1,54 @@
 import React, { Component } from 'react';
-
-import {
-    InputGroup,
-    InputGroupAddon,
-    InputGroupButtonDropdown,
-    InputGroupDropdown,
-    Input,
-    Button,
-    Dropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem
-} from 'reactstrap';
+import axios from "axios";
 
 
 
 class InputForm extends Component {
-    constructor(props) {
-        super(props);
-
-        this.toggleDropDown = this.toggleDropDown.bind(this);
-        this.toggleSplit = this.toggleSplit.bind(this);
+    constructor() {
+        super();
         this.state = {
-            dropdownOpen: false,
-            splitButtonOpen: false
+            username: "",
+            email: "",
+            content: ""
         };
-    }
-    toggleDropDown() {
-        this.setState({
-            dropdownOpen: !this.state.dropdownOpen
-        });
+
     }
 
-    toggleSplit() {
-        this.setState({
-            splitButtonOpen: !this.state.splitButtonOpen
-        });
-    }
+     makeRequest = (e) => {
+        e.preventDefault();
+
+        axios
+            .post("http://localhost:5000/item/createItem", {
+                username: e.target[0].value,
+                email: e.target[1].value,
+                content: e.target[2].value
+            })
+
+            .then(response => {
+                //{console.log("New post")}
+              
+                this.setState({
+                    data: response.data
+                });
+            });
+    };
+
     render() {
         return (
             <div>
-                <p>Input your details</p>
-                <InputGroup>
-                    <InputGroupAddon addonType="prepend"><Button>I'm a button</Button></InputGroupAddon>
-                    <Input />
-                </InputGroup>
-                <br />
-                <InputGroup>
-                    <Input />
-                    <InputGroupButtonDropdown addonType="append" isOpen={this.state.dropdownOpen} toggle={this.toggleDropDown}>
-                        <DropdownToggle caret>
-                            Button Dropdown
-            </DropdownToggle>
-                        <DropdownMenu>
-                            <DropdownItem header>Header</DropdownItem>
-                            <DropdownItem disabled>Action</DropdownItem>
-                            <DropdownItem>Another Action</DropdownItem>
-                            <DropdownItem divider />
-                            <DropdownItem>Another Action</DropdownItem>
-                        </DropdownMenu>
-                    </InputGroupButtonDropdown>
-                </InputGroup>
-                <br />
-                <InputGroup>
-                    <InputGroupButtonDropdown addonType="prepend" isOpen={this.state.splitButtonOpen} toggle={this.toggleSplit}>
-                        <Button outline>Split Button</Button>
-                        <DropdownToggle split outline />
-                        <DropdownMenu>
-                            <DropdownItem header>Header</DropdownItem>
-                            <DropdownItem disabled>Action</DropdownItem>
-                            <DropdownItem>Another Action</DropdownItem>
-                            <DropdownItem divider />
-                            <DropdownItem>Another Action</DropdownItem>
-                        </DropdownMenu>
-                    </InputGroupButtonDropdown>
-                    <Input placeholder="and..." />
-                    <InputGroupAddon addonType="append"><Button color="secondary">I'm a button</Button></InputGroupAddon>
-                </InputGroup>
+                <form onSubmit={this.makeRequest}>
+                    <label for="accUsername" id="accUsernameLabel">Username: </label>
+                    <input type="text" id="accUsername" class="form-control" name="accUsername" required />
+                    <br />
+                    <label for="accEmail" id="accEmailLable">Email: </label>
+                    <input type="email" id="accEmail" class="form-control" name="accEmail" required />
+                    <br />
+                    <label for="accContent" id="accContentLable">Content: </label>
+                    <input type="content" id="accContent" class="form-control" name="accContent" required />
+                    <br />
 
+                    <input type="submit" class="btn btn-primary" value="create post" />
+                </form>
             </div>
         );
     }

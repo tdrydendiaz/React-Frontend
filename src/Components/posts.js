@@ -2,6 +2,14 @@ import React, { Component } from 'react';
 import axios from "axios";
 
 function Posts(props) {
+// let defaultProps = {
+//    username:"Matt"
+//  }
+
+// let propTypes = {
+// model: object.isRequired,
+// title: string
+// }
 
     let handleClick = () => {
         let itemToDelete = {

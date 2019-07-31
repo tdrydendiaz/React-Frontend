@@ -17,11 +17,13 @@ function Posts(props) {
 
    
         return (
-            <div>
+          <tr>
+              <td >
                 <h4>{props.username}</h4>
                 <p>{props.content}</p>
                 <button onClick={handleClick}>Delete Item</button>
-            </div>
+           </td>
+           </tr>
         );
     }
 

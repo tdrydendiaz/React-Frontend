@@ -25,23 +25,23 @@ class App extends Component {
       data: []
     };
   }
-  
+
   componentDidMount() {
-  
-  
+
+
     this.onLoad();
 
   };
 
   onLoad = () => {
 
-  axios
+    axios
       .get("http://localhost:5000/item/all")
       .then(response => {
         this.setState({
           data: response.data
         });
-console.log(this.state.data)
+        console.log(this.state.data)
       });
 
   }
@@ -50,11 +50,12 @@ console.log(this.state.data)
     return (
       <div>
         <NaviBar />
-     
+
         <InputForm getAll={this.onLoad} />
 
-        <PostThread  />
-      
+
+        <PostThread getAll={this.onLoad} data={this.state.data} />
+
 
       </div>
     );

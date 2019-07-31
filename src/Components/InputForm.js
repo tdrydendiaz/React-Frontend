@@ -36,6 +36,7 @@ class InputForm extends Component {
                 });
   
                 this.props.getAll();
+            
 //do load
 
             });

@@ -1,21 +1,31 @@
 import React, { Component } from 'react';
-import axios from "axios";
+import _ from 'lodash';
+import {
+    Table
+} from 'reactstrap';
+import Posts from './Posts'
 
 
-class PostThread extends Component {
+function PostThread(props) {
 
-    render() {
+    const {
+        data
+    } = props;
 
-
-        return (
-            <div>
-                <p>All the Posts</p>
-
-            </div>
-        );
-    }
-
+    return (
+        <div>
+            <Table striped bordered hover variant="dark">
+                <tbody>
+                    {_.reverse(data).map((item) => (
+                        <tr><td><Posts getAll={props.getAll} username={item.username} content={item.content} _id={item._id} /></td></tr>
+                    ))}
+                </tbody>
+            </Table>
+        </div>
+    );
 }
+
+
 
 
 
